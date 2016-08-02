@@ -225,6 +225,64 @@ public class Edges: CompoundAttribute {
     }
     
     /**
+        Initializer which creates an `Attribute` instance
+        with `constant = 0`, relatedBy = .Equal` and
+        `Multiplier` the struct provided
+        - parameter multiplier: `Multiplier` applied to the
+        `NSLayoutConstraint`
+        - returns: the `Attribute` instance created
+     */
+    public override init(_ multiplier: Multiplier) {
+        super.init()
+        self.attributes = [
+            Top(multiplier),
+            Left(multiplier),
+            Right(multiplier),
+            Bottom(multiplier)
+        ]
+    }
+    
+    /**
+        Initializer which creates an `Attribute` instance
+        with `constant = value`, `relatedBy = .Equal` and
+        `Multiplier` the multiplier supplied
+        - parameter value: `constant` of the constraint
+        - parameter multiplier: `Multiplier` applied to the
+        `NSLayoutConstraint`
+        - returns: the `Attribute` instance created
+     */
+    public override init(_ value: CGFloat, _ multiplier: Multiplier) {
+        super.init()
+        self.attributes = [
+            Top(value, multiplier),
+            Left(value, multiplier),
+            Right(value, multiplier),
+            Bottom(value, multiplier)
+        ]
+    }
+    
+    /**
+        Initializer which creates an `Attribute` instance
+        with the `constant`, `multiplier` and `relatedBy`
+        specified by the `Constant` and the `Multiplier`
+        struct provided
+        - parameter constant: `Constant` struct aggregating
+        `constant` and `relatedBy` properties
+        - parameter multiplier: `Multiplier` applied to the
+        `NSLayoutConstraint`
+        - returns: the `Attribute` instance created
+     */
+    public override init(_ constant: Constant, _ multiplier: Multiplier) {
+        super.init()
+        self.attributes = [
+            Top(constant, multiplier),
+            Left(constant, multiplier),
+            Right(constant, multiplier),
+            Bottom(constant, multiplier)
+        ]
+    }
+    
+    /**
         Initializer that creates the sub `Attribute` objects shaping the
         `CompoundAttribute` object with the `constant` properties specified by 
         the `UIEdgeInsets` parameter, `multiplier = 1.0` and `RelatedBy = .Equal`
@@ -291,6 +349,58 @@ public class Center: CompoundAttribute {
         self.attributes = [
             CenterX(constant),
             CenterY(constant)
+        ]
+    }
+    
+    /**
+        Initializer which creates an `Attribute` instance
+        with `constant = 0`, relatedBy = .Equal` and
+        `Multiplier` the struct provided
+        - parameter multiplier: `Multiplier` applied to the
+        `NSLayoutConstraint`
+        - returns: the `Attribute` instance created
+     */
+    public override init(_ multiplier: Multiplier) {
+        super.init()
+        self.attributes = [
+            CenterX(multiplier),
+            CenterY(multiplier)
+        ]
+    }
+    
+    /**
+        Initializer which creates an `Attribute` instance
+        with `constant = value`, `relatedBy = .Equal` and
+        `Multiplier` the multiplier supplied
+        - parameter value: `constant` of the constraint
+        - parameter multiplier: `Multiplier` applied to the
+        `NSLayoutConstraint`
+        - returns: the `Attribute` instance created
+     */
+    public override init(_ value: CGFloat, _ multiplier: Multiplier) {
+        super.init()
+        self.attributes = [
+            CenterX(value, multiplier),
+            CenterY(value, multiplier)
+        ]
+    }
+    
+    /**
+        Initializer which creates an `Attribute` instance
+        with the `constant`, `multiplier` and `relatedBy`
+        specified by the `Constant` and the `Multiplier`
+        struct provided
+        - parameter constant: `Constant` struct aggregating
+        `constant` and `relatedBy` properties
+        - parameter multiplier: `Multiplier` applied to the
+        `NSLayoutConstraint`
+        - returns: the `Attribute` instance created
+     */
+    public override init(_ constant: Constant, _ multiplier: Multiplier) {
+        super.init()
+        self.attributes = [
+            CenterX(constant, multiplier),
+            CenterY(constant, multiplier)
         ]
     }
     
