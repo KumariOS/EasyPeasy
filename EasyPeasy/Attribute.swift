@@ -103,6 +103,49 @@ public class Attribute {
         self.priority = .HighPriority
     }
     
+    /**
+        Initializer which creates an `Attribute` instance
+        with `constant = 0`, relatedBy = .Equal` and 
+        `Multiplier` the struct provided
+        - parameter multiplier: `Multiplier` applied to the
+        `NSLayoutConstraint`
+        - returns: the `Attribute` instance created
+     */
+    public init(_ multiplier: Multiplier) {
+        self.constant = Constant(value: 0.0, relation: .Equal, multiplier: multiplier)
+        self.priority = .HighPriority
+    }
+    
+    /**
+        Initializer which creates an `Attribute` instance
+        with `constant = value`, `relatedBy = .Equal` and
+        `Multiplier` the multiplier supplied
+        - parameter value: `constant` of the constraint
+        - parameter multiplier: `Multiplier` applied to the
+        `NSLayoutConstraint`
+        - returns: the `Attribute` instance created
+     */
+    public init(_ value: CGFloat, _ multiplier: Multiplier) {
+        self.constant = Constant(value: value, relation: .Equal, multiplier: multiplier)
+        self.priority = .HighPriority
+    }
+    
+    /**
+        Initializer which creates an `Attribute` instance
+        with the `constant`, `multiplier` and `relatedBy`
+        specified by the `Constant` and the `Multiplier`
+        struct provided
+        - parameter constant: `Constant` struct aggregating
+        `constant` and `relatedBy` properties
+        - parameter multiplier: `Multiplier` applied to the
+        `NSLayoutConstraint`
+        - returns: the `Attribute` instance created
+     */
+    public init(_ constant: Constant, _ multiplier: Multiplier) {
+        self.constant = Constant(value: constant.value, relation: constant.relation, multiplier: multiplier)
+        self.priority = .HighPriority
+    }
+    
     // MARK: Public methods
     
     /**
@@ -152,7 +195,7 @@ public class Attribute {
         let layoutConstraint = NSLayoutConstraint(
             item: item,
             attribute: self.createAttribute.layoutAttribute,
-            relatedBy: self.constant.layoutRelation(),
+            relatedBy: self.constant.relation,
             toItem: self.referenceItem,
             attribute: self.referenceAttributeHelper().layoutAttribute,
             multiplier: self.constant.layoutMultiplier(),
