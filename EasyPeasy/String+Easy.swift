@@ -23,23 +23,21 @@ internal extension String {
         will be used in order to create the `stringValue`
      */
     static func easy_signature(for attribute: Attribute) -> String {
-        // Signature of the create `ReferenceAttribute` of
-        // the passed `Attribute`
+        // Signature of the create `ReferenceAttribute` of the 
+        // passed `Attribute`
         var signature = attribute.createAttribute.signatureString
         
-        // Signature of the `Modifier` of the passed 
-        // `Attribute`
-        switch attribute.constant.modifier {
-        case .EqualTo, .MultipliedBy:
+        // Signature of the `Relation` of the passed `Attribute`
+        switch attribute.constant.relation {
+        case .Equal:
             signature += "eq_"
-        case .GreaterThanOrEqualTo:
+        case .GreaterThanOrEqual:
             signature += "gt_"
-        case .LessThanOrEqualTo:
+        case .LessThanOrEqual:
             signature += "lt_"
         }
         
-        // Signature of the `Priority` of the passed
-        // `Attribute`
+        // Signature of the `Priority` of the passed `Attribute`
         signature += String(attribute.priority.layoutPriority())
         
         return signature
