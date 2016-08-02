@@ -95,9 +95,61 @@ public class Size: CompoundAttribute {
     }
     
     /**
+        Initializer which creates an `Attribute` instance
+        with `constant = 0`, relatedBy = .Equal` and
+        `Multiplier` the struct provided
+        - parameter multiplier: `Multiplier` applied to the
+        `NSLayoutConstraint`
+        - returns: the `Attribute` instance created
+     */
+    public override init(_ multiplier: Multiplier) {
+        super.init()
+        self.attributes = [
+            Width(multiplier),
+            Height(multiplier)
+        ]
+    }
+    
+    /**
+        Initializer which creates an `Attribute` instance
+        with `constant = value`, `relatedBy = .Equal` and
+        `Multiplier` the multiplier supplied
+        - parameter value: `constant` of the constraint
+        - parameter multiplier: `Multiplier` applied to the
+        `NSLayoutConstraint`
+        - returns: the `Attribute` instance created
+     */
+    public override init(_ value: CGFloat, _ multiplier: Multiplier) {
+        super.init()
+        self.attributes = [
+            Width(value, multiplier),
+            Height(value, multiplier)
+        ]
+    }
+    
+    /**
+        Initializer which creates an `Attribute` instance
+        with the `constant`, `multiplier` and `relatedBy`
+        specified by the `Constant` and the `Multiplier`
+        struct provided
+        - parameter constant: `Constant` struct aggregating
+        `constant` and `relatedBy` properties
+        - parameter multiplier: `Multiplier` applied to the
+        `NSLayoutConstraint`
+        - returns: the `Attribute` instance created
+     */
+    public override init(_ constant: Constant, _ multiplier: Multiplier) {
+        super.init()
+        self.attributes = [
+            Width(constant, multiplier),
+            Height(constant, multiplier)
+        ]
+    }
+    
+    /**
         Initializer which creates a `CompountAttribute` instance formed
         by `Width` and `Height` attributes with `constant = size.width`
-        and `constant = size.height` respectively, `multiplier = 1.0` 
+        and `constant = size.height` respectively, `multiplier = 1.0`
         and `relatedBy = .Equal`
         - parameter size: `CGSize` that sets the constants for the `Width`
         and `Height` *subattributes*
